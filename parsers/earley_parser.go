@@ -1,7 +1,6 @@
 package parsers
 
 import (
-	"fmt"
 	"log"
 	"os"
 
@@ -28,14 +27,14 @@ func NewEarleyParser(grammar grammars.Grammar) Parser {
 	return parser
 }
 
-func (r *earleyParser) initialize() {
+func (parser *earleyParser) initialize() {
 
-	start := r.grammar.Start()
-	r.chart = charts.NewChart()
+	start := parser.grammar.Start()
+	parser.chart = charts.NewChart()
 
-	for p := 0; p < len(r.grammar.Productions()); p++ {
+	for p := 0; p < len(parser.grammar.Productions()); p++ {
 
-		production := r.grammar.Productions()[p]
+		production := parser.grammar.Productions()[p]
 
 		if production.LeftHandSide() != start {
 			continue
@@ -43,15 +42,15 @@ func (r *earleyParser) initialize() {
 
 		dottedRule := grammars.NewDottedRule(production, 0)
 		state := charts.NewState(dottedRule, 0)
-		if !r.chart.Add(0, state) {
+		if !parser.chart.Add(0, state) {
 			continue
 		}
 
-		fmt.Printf("initialize(0): %v", state)
-		fmt.Println()
+		parser.logger.Printf("initialize (0): %v", state)
+		parser.logger.Println()
 	}
 
-	r.reductionPass(0)
+	parser.reductionPass(0)
 }
 
 func (parser *earleyParser) Pulse(token Token) bool {
