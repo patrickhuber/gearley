@@ -49,7 +49,7 @@ func (s *accumulatorSpan) Peek() rune {
 }
 
 func (s *accumulatorSpan) RuneAt(index int) rune {
-	return s.accumulator.RuneAt(index)
+	return s.accumulator.RuneAt(index + s.start)
 }
 
 type Accumulator interface {

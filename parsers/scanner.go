@@ -63,6 +63,8 @@ func (s *scanner) readRune() (rune, error) {
 
 func (s *scanner) updatePositionMetrics(ch rune) {
 	s.position++
+
+	// this will cover the case of \r and \r\n
 	if ch == '\n' {
 		s.column = 0
 		s.line++
