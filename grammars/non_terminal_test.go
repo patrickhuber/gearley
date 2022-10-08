@@ -3,7 +3,7 @@ package grammars_test
 import (
 	"fmt"
 
-	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"github.com/patrickhuber/gearly/grammars"
 )
@@ -26,7 +26,7 @@ var _ = Describe("NonTerminal", func() {
 			Expect(nonTerminal.Equal(expected)).To(BeTrue())
 		})
 		It("returns false when different symbol", func() {
-			expected := grammars.NewLiteralTerminal("test")
+			expected := grammars.NewLiteralTerminalFromString("test")
 			Expect(nonTerminal.Equal(expected)).To(BeFalse())
 		})
 		It("returns false when different name", func() {

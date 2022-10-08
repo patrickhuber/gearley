@@ -3,7 +3,7 @@ package grammars_test
 import (
 	"fmt"
 
-	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"github.com/patrickhuber/gearly/grammars"
 )
@@ -16,7 +16,7 @@ var _ = Describe("Production", func() {
 		leftHandSide := grammars.NewNonTerminal("S")
 		rightHandSide := []grammars.Symbol{
 			grammars.NewNonTerminal("S"),
-			grammars.NewLiteralTerminal("s"),
+			grammars.NewLiteralTerminalFromString("s"),
 		}
 		production = grammars.NewProduction(leftHandSide, rightHandSide...)
 	})
@@ -42,7 +42,7 @@ var _ = Describe("Production", func() {
 				leftHandSide := grammars.NewNonTerminal("S")
 				rightHandSide := []grammars.Symbol{
 					grammars.NewNonTerminal("S"),
-					grammars.NewLiteralTerminal("s"),
+					grammars.NewLiteralTerminalFromString("s"),
 				}
 				p := grammars.NewProduction(leftHandSide, rightHandSide...)
 				Expect(production.Equal(p)).To(BeTrue())
@@ -53,8 +53,8 @@ var _ = Describe("Production", func() {
 				leftHandSide := grammars.NewNonTerminal("S")
 				rightHandSide := []grammars.Symbol{
 					grammars.NewNonTerminal("S"),
-					grammars.NewLiteralTerminal("s"),
-					grammars.NewLiteralTerminal("v"),
+					grammars.NewLiteralTerminalFromString("s"),
+					grammars.NewLiteralTerminalFromString("v"),
 				}
 				p := grammars.NewProduction(leftHandSide, rightHandSide...)
 				Expect(production.Equal(p)).To(BeFalse())
@@ -65,7 +65,7 @@ var _ = Describe("Production", func() {
 				leftHandSide := grammars.NewNonTerminal("M")
 				rightHandSide := []grammars.Symbol{
 					grammars.NewNonTerminal("S"),
-					grammars.NewLiteralTerminal("s"),
+					grammars.NewLiteralTerminalFromString("s"),
 				}
 				p := grammars.NewProduction(leftHandSide, rightHandSide...)
 				Expect(production.Equal(p)).To(BeFalse())

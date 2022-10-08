@@ -1,7 +1,7 @@
 package charts_test
 
 import (
-	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"github.com/patrickhuber/gearly/charts"
 	"github.com/patrickhuber/gearly/grammars"
@@ -14,7 +14,7 @@ var _ = Describe("State", func() {
 	BeforeEach(func() {
 		lhs := grammars.NewNonTerminal("S")
 		rhs := []grammars.Symbol{
-			grammars.NewLiteralTerminal("s"),
+			grammars.NewLiteralTerminalFromString("s"),
 		}
 		production := grammars.NewProduction(lhs, rhs...)
 		dottedRule := grammars.NewDottedRule(production, 0)
@@ -39,7 +39,7 @@ var _ = Describe("State", func() {
 			It("returns true", func() {
 				lhs := grammars.NewNonTerminal("S")
 				rhs := []grammars.Symbol{
-					grammars.NewLiteralTerminal("s"),
+					grammars.NewLiteralTerminalFromString("s"),
 				}
 				production := grammars.NewProduction(lhs, rhs...)
 				dottedRule := grammars.NewDottedRule(production, 0)

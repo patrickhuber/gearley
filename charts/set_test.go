@@ -1,7 +1,7 @@
 package charts_test
 
 import (
-	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"github.com/patrickhuber/gearly/charts"
 	"github.com/patrickhuber/gearly/grammars"
@@ -27,7 +27,7 @@ var _ = Describe("Set", func() {
 		Context("when completed", func() {
 			It("adds to copmleted list", func() {
 				lhs := grammars.NewNonTerminal("S")
-				rhs := grammars.NewLiteralTerminal("s")
+				rhs := grammars.NewLiteralTerminalFromString("s")
 				production := grammars.NewProduction(lhs, rhs)
 				dottedRule := grammars.NewDottedRule(production, 1)
 				state := charts.NewState(dottedRule, 0)
